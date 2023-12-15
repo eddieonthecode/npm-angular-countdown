@@ -1,6 +1,17 @@
 {
-  "name": "angular-countdown",
-  "version": "0.0.1",
+  "name": "@eddieonthecode/angular-countdown",
+  "private": false,
+  "version": "0.0.2",
+  "description": "A countdown component for Angular",
+  "homepage": "https://github.com/eddieonthecode/npm-angular-countdown",
+  "author": {
+    "name": "EddieOnTheCode",
+    "email": "eddieonthecode@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eddieonthecode/npm-angular-countdown.git"
+  },
   "peerDependencies": {
     "@angular/common": "^13.3.0",
     "@angular/core": "^13.3.0"

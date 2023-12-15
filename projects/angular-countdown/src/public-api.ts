@@ -2,4 +2,5 @@
  * Public API Surface of angular-countdown
  */
 
-export * from './lib/countdown.module'
+export {CountdownComponent} from './lib/countdown.component'
+export {CountdownModule} from './lib/countdown.module'
