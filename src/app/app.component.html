@@ -1,0 +1,8 @@
+<div class="h-screen flex flex-col items-center p-10">
+  <div class="flex flex-col justify-center w-full max-w-[500px]">
+    <h1 class="text-xl font-bold mb-4">Countdown by e12e - EddieOnTheCode</h1>
+    <input class="border border-solid border-gray-400 rounded-md p-1 mb-4" type="datetime-local" [(ngModel)]="time" />
+    <countdown [time]="time" (onReached)="handleReached()">
+    </countdown>
+  </div>
+</div>
