@@ -1,7 +1,7 @@
 {
   "name": "@eddieonthecode/angular-countdown",
   "private": false,
-  "version": "0.0.2",
+  "version": "1.0.1",
   "description": "A countdown component for Angular",
   "homepage": "https://github.com/eddieonthecode/npm-angular-countdown",
   "author": {

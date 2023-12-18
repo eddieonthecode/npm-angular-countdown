@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'countdown',
   templateUrl: './countdown.component.html',
   styleUrls: ['./countdown.component.scss']
 })
-export class CountdownComponent implements OnDestroy{
+export class CountdownComponent implements OnInit, OnDestroy{
   _time?: Date;
   @Input() set time(val: Date | undefined) {
     this._time = val;
@@ -29,10 +29,26 @@ export class CountdownComponent implements OnDestroy{
   minute: number = 0;
   second: number = 0;
 
-  timerID: any = null;
+  timerIDInterval: any = null;
+  timerIDTimeout: any = null;
+
+  ngOnInit(): void {
+    document.addEventListener('visibilitychange', this.handleVisibleChange.bind(this));
+  }
 
   ngOnDestroy(): void {
     this.removeTime();
+    document.removeEventListener('visibilitychange', this.handleVisibleChange.bind(this));
+  }
+
+  /**
+   * Handle visible change
+   * @createdb e12e 18.12.2023
+   */
+  handleVisibleChange() {
+    if (document.visibilityState == "visible") {
+      this.setTime();
+    }
   }
 
   /**
@@ -40,6 +56,7 @@ export class CountdownComponent implements OnDestroy{
    * @createdby e12e 15.12.2023
    */
   setTime() {
+    clearTimeout(this.timerIDTimeout);
     if (!this._time) {
       this.removeTime();
       return;
@@ -102,10 +119,10 @@ export class CountdownComponent implements OnDestroy{
     if (timeDifference % (1000 * 60 * 60 * 24) == 0) this.day--;
 
     // Handle time run
-    clearInterval(this.timerID);
-    setTimeout(() => {
+    clearInterval(this.timerIDInterval);
+    this.timerIDTimeout = setTimeout(() => {
       this.timeRun();
-      this.timerID = setInterval(() => {
+      this.timerIDInterval = setInterval(() => {
         this.timeRun();
       }, 1000)
     }, 1000 - currentMilliseconds)
@@ -123,7 +140,7 @@ export class CountdownComponent implements OnDestroy{
     }
     // Check that the second is 0 and the day, hour, and minute are also 0, then the date is reached
     if (!this.day && !this.hour && !this.minute) {
-      clearInterval(this.timerID);
+      clearInterval(this.timerIDInterval);
       this.onReached.emit();
       return;
     }
@@ -160,6 +177,7 @@ export class CountdownComponent implements OnDestroy{
     this.hour = 0;
     this.minute = 0;
     this.second = 0;
-    clearInterval(this.timerID);
+    clearInterval(this.timerIDInterval);
+    clearTimeout(this.timerIDTimeout);
   }
 }
