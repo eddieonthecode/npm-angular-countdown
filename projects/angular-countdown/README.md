@@ -19,4 +19,6 @@ npm install @eddieonthecode/angular-countdown
 ```
 
 ## Preview  
-<video width="630" height="300" src="https://ik.imagekit.io/eddieonthecode/VIDEO/npm-angular-countdown.mp4?updatedAt=1702630811433"></video>
+![angular-countdown-preview](https://ik.imagekit.io/eddieonthecode/PHOTO/npm-angular-countdown?updatedAt=1702868662505 "angular-countdown preview")  
+
+[DEMO](https://angular-countdown.vercel.app/)
